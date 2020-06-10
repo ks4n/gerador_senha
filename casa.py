@@ -13,17 +13,22 @@ class Novo(QMainWindow, GrafGerarSenha):
     def gerando_pw(self):
         coletando = ''
         pw_gerada = ''
-        if self.box_numeros.isChecked():
-            coletando += '0123456789'
-        if self.box_maiuscula.isChecked():
-            coletando += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        if self.box_minuscula.isChecked():
-            coletando += 'abcdefghijklmnopqrstuwxyz'
-        if self.box_caractere_especial.isChecked():
-            coletando += '@!#$%&*()_+}{^?;:>/-+'
-        for c in range(int(self.input_tamanho_senha.currentText())):
-            pw_gerada += choice(coletando)
-        self.textBrowser.setText(pw_gerada)
+        try:
+            self.erro_aviso.setText('')
+            if self.box_numeros.isChecked():
+                coletando += '0123456789'
+            if self.box_maiuscula.isChecked():
+                coletando += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            if self.box_minuscula.isChecked():
+                coletando += 'abcdefghijklmnopqrstuwxyz'
+            if self.box_caractere_especial.isChecked():
+                coletando += '@!#$%&*()_+}{^?;:>/-+'
+            for c in range(int(self.input_tamanho_senha.currentText())):
+                pw_gerada += choice(coletando)
+            self.textBrowser.setText(pw_gerada)
+        except:
+            self.erro_aviso.setText('Marque alguma opção abaixo')
+            self.textBrowser.setText('')
 
 
 if __name__ == '__main__':
